@@ -1,7 +1,9 @@
 name: 'simple-template-renderer'
 description: 'Replaces some ${TOKEN} in files by the corresponding env variable.'
-icon: code
-color: purple
+author: NicoG60
+branding:
+  icon: code
+  color: purple
 inputs:
   input:
     description: 'The file(s) to match. Glob pattern can be used'
