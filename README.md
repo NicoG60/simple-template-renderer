@@ -1,5 +1,7 @@
 # Simple template file renderer
 
+![units-test](https://github.com/NicoG60/simple-template-renderer/workflows/units-test/badge.svg)
+
 ## TL;DR Usage
 
 Let's say you have the following text file
