@@ -1,13 +1,17 @@
 name: 'Wait'
 description: 'Wait a designated number of milliseconds'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  input:
+    description: 'The file(s) to match. Glob pattern can be used'
     required: true
-    default: '1000'
-outputs:
-  time: # output will be available to future steps
-    description: 'The message to output'
+  follow-symbolic-links:
+    description: 'Indicates whether to follow symbolic links'
+    default: true
+  output:
+    description: 'A directory to save the rendered file(s) to. If omitted, changes are done in place.'
+  hard-fail:
+    description: 'Indicate whether to make the action fail when a match could not be replaced. Default just prints a warning'
+    default: false
 runs:
   using: 'node12'
   main: 'dist/index.js'

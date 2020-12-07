@@ -1,0 +1,2 @@
+This is a test: ${TEST_VAR} with ${TEST_VAR}
+${TEST_VAR} and ${TEST_VAR}
