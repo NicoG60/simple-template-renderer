@@ -16,6 +16,9 @@ inputs:
   hard-fail:
     description: 'Indicate whether to make the action fail when a match could not be replaced. Default just prints a warning'
     default: false
+  enable-log:
+    description: 'Whether the action should log the input and output content'
+    default: false
 runs:
   using: 'node12'
   main: 'dist/index.js'

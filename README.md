@@ -36,4 +36,5 @@ with:
   hard-fail: false              # - When set to true, the workflow fails if it
                                 #   can't find a corresponding variable in the env
                                 #   Optional. Default: false
+  enable-log: false             # - Whether to log the content of the files
 ```

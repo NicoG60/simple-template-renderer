@@ -19,6 +19,7 @@ async function run() {
     const input = core.getInput('input', {required: true})
     const output = core.getInput('output')
     const hard_fail = core.getInput('hard-fail') !== 'false'
+    const log = core.getInput('enable-log') !== 'false'
 
     if(output)
       await fs.mkdir(output, {recursive: true})
@@ -37,13 +38,17 @@ async function run() {
       
       const data = await handle.readFile('utf8')
 
-      console.log(`===== ORIGINAL: ${file} ======`)
-      console.log(data)
+      
+      
 
       const rendered = renderer.render(data, /\$\{([A-Z_-]+)\}/gm, hard_fail)
 
-      console.log("===== PROCESSED ======")
-      console.log(rendered)
+      if(log) {
+        console.log(`===== ORIGINAL: ${file} ======`)
+        console.log(data)
+        console.log("===== PROCESSED ======")
+        console.log(rendered)
+      }
 
       if(output) {
         await handle.close();
