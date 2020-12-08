@@ -22,6 +22,12 @@ async function run() {
     const log       = core.getInput('enable-log').toLowerCase() === 'true'
     const symlinks  = core.getInput('follow-symbolic-links').toLowerCase() === 'true'
 
+    core.debug(`input:     ${input}`)
+    core.debug(`output:    ${output}`)
+    core.debug(`hard_fail: ${hard_fail}`)
+    core.debug(`log:       ${log}`)
+    core.debug(`symlinks:  ${symlinks}`)
+
     if(output)
       await fs.mkdir(output, {recursive: true})
 
@@ -41,10 +47,10 @@ async function run() {
       const rendered = renderer.render(data, /\$\{([A-Z_-]+)\}/gm, hard_fail)
 
       if(log) {
-        console.log(`===== ORIGINAL: ${file} ======`)
-        console.log(data)
-        console.log("===== PROCESSED ======")
-        console.log(rendered)
+        core.debug(`===== ORIGINAL: ${file}`)
+        core.debug(data)
+        core.debug("===== PROCESSED: ")
+        core.debug(rendered)
       }
 
       if(output) {
