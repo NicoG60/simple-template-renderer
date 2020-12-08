@@ -16,19 +16,16 @@ const fs       = __webpack_require__(747).promises
 // most @actions toolkit packages have async methods
 async function run() {
   try {
-    const input = core.getInput('input', {required: true})
-    const output = core.getInput('output')
-    const hard_fail = core.getInput('hard-fail') !== 'false'
-    const log = core.getInput('enable-log') !== 'false'
+    const input     = core.getInput('input', {required: true})
+    const output    = core.getInput('output')
+    const hard_fail = core.getInput('hard-fail').toLowerCase() === 'true'
+    const log       = core.getInput('enable-log').toLowerCase() === 'true'
+    const symlinks  = core.getInput('follow-symbolic-links').toLowerCase() === 'true'
 
     if(output)
       await fs.mkdir(output, {recursive: true})
 
-    const globOptions = {
-      followSymbolicLinks: core.getInput('follow-symbolic-links').toLowerCase() !== 'false'
-    }
-
-    const globber = await glob.create(input, globOptions)
+    const globber = await glob.create(input, { followSymbolicLinks: symlinks })
     for await (const file of globber.globGenerator()) {
       let stat = await fs.stat(file)
       if(!stat.isFile())
