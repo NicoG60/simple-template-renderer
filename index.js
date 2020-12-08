@@ -29,7 +29,14 @@ async function run() {
       let handle = await fs.open(file, 'r+')
       
       const data = await handle.readFile('utf8')
+
+      console.log(`===== ORIGINAL: ${file} ======`)
+      console.log(data)
+
       const rendered = renderer.render(data, /\$\{([A-Z_-]+)\}/gm, hard_fail)
+
+      console.log("===== PROCESSED ======")
+      console.log(rendered)
 
       if(output) {
         await handle.close();
